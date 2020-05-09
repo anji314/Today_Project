@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <!-- 아이콘 추가 -->
+    <!-- type 부분을 꼭 넣어 줘야 한다. 안하면 안보인다. -->
+
+   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--폰트와 파비콘(브라우저로 웹앱을 실행했을때 웹사이트 제목의 왼쪽에 표시되는 로고)을 설정 -->
+    <link rel="shortcut icon" herf="src/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" herf="src/assets/favicon.ico" type="image/x-icon">
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.story.min.js"></script>
+     <script>
+      // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+      window.Kakao.init('83cad9447b59eeb4ae6b7385b5307162');
+      // SDK 초기화 여부를 판단합니다.
+      console.log(Kakao.isInitialized());
+     </script>
+    <title>today_Project</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="/dist/build.js"></script>
+  </body>
+</html>
