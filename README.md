@@ -37,6 +37,71 @@
 ---
 
 ### 날씨 API 이용
+> 기존에 사용하려던 오픈 API sk 날씨데이터 서비스가 종료가 되어 불가피하게 API를 바꾸게 되었다.    
+> 새로 찾은 API => [프로젝트에 사용한 날씨 API](https://openweathermap.org/current)        
+> 날씨정보와 그림까지 제공해 주기 때문에 사용하기 용이했다.         
+> Republic of Korea의 ID값인 1835841과 회원가입해서 발급받은 개인키를 이용해 정보를 가져올 수 있다.      
+> 지역 이름으로도 가져올 수 있다.       
+#### 날씨 정보 가져오기 
+```
+GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
+```
+#### 이미지 가져오기     
+```
+<div class="W_img">
+                <img v-bind:src="img_url" >
+</div>
+
+ this.img_url='http://openweathermap.org/img/wn/'+this.W_state.icon+'@2x.png';
+ this.W_state.icon : get으로 가져온 데이터에서 아이콘 정보(weather.icon from response)를 가져와야한다.
+```
+#### API Response 예시
+```
+{"coord": { "lon": 139,"lat": 35},
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 281.52,
+    "feels_like": 278.99,
+    "temp_min": 280.15,
+    "temp_max": 283.71,
+    "pressure": 1016,
+    "humidity": 93
+  },
+  "wind": {
+    "speed": 0.47,
+    "deg": 107.538
+  },
+  "clouds": {
+    "all": 2
+  },
+  "dt": 1560350192,
+  "sys": {
+    "type": 3,
+    "id": 2019346,
+    "message": 0.0065,
+    "country": "JP",
+    "sunrise": 1560281377,
+    "sunset": 1560333478
+  },
+  "timezone": 32400,
+  "id": 1851632,
+  "name": "Shuzenji",
+  "cod": 200
+}
+```
+> API를 이용한 프로젝트 결과 => [실행 결과]
+
+
+
+
 
 ## Build Setup
 
