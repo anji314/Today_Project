@@ -9,7 +9,8 @@
 import loginservice from './components/Login_service/kakao_login.vue';
 import logintoken from './components/Login_service/kakao_token.vue';
 import vuerouter from 'vue-router';
-import main from './components/Main.vue'
+import main from './components/Main.vue';
+import recommendlist from './components/list.vue';
 const router=new vuerouter({
   mode:'history',
   routes:[
@@ -25,10 +26,10 @@ const router=new vuerouter({
       ]
     },
    {path:'/Main',component:main},
-   // {path:'/RecommendList',},
+   {path:'/List/:id',component:recommendlist},
     //{path:'/SpotInformation',},
-    //{path:'Mylist',},
-   // {path:'Rate',}
+    //{path:'/Mylist',},
+   // {path:'/Rate',}
   ]
 })
 export default {
@@ -37,5 +38,10 @@ export default {
 </script>
 
 <style>
+body{
+  
+  background-image : url("./assets/login_img/back.png");
+  background-size: cover;
 
+}
 </style>

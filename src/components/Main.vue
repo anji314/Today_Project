@@ -1,25 +1,26 @@
 <template>
   <div >
-      <a v-if="flag">{{name}}님</a> 안녕하세요!
-      <button type="button" name="Logout" v-on:click="Logout">로그아웃</button>
-      <header></header>
-      <weather></weather>
-      <Wcomment></Wcomment>
-      <activivies></activivies>
-      <footer></footer>
+      <makeheader class="makeheader"></makeheader>
+      <weather class="weather"></weather>
+      <clothes class="clothes"></clothes>
+      <activities></activities>
+      <makefooter></makefooter>
       
   </div>
 </template>
 <script>
 import axios from 'axios';
-import weather from './Weather_service/get_weatherinfo.vue'
+import weather from './Weather_service/get_weatherinfo.vue';
+import header from'./Header_Footer/header.vue';
+import clothes from'./Clothes_Service/recommend.vue';
+import activities from'./Main_Service/activities.vue';
+
 const config={
     headers:{ Authorization: 'Bearer ${this.token}'}
 };
 export default {
     data(){
         return{
-       
         userinfo:{
             nickname:'',
             profile_image_url:'',
@@ -32,28 +33,18 @@ export default {
         }
     },
     methods:{
-        // 로그아웃 함수 ->헤더로 뺄까 생각중
-    Logout:function(){
-        this.token=sessionStorage['usertoken'];
-        // unlink or logout
-        axios.post('https://kapi.kakao.com/v1/user/unlink','',{
-            headers : { 
-                Authorization: 'Bearer '+this.token
-                }
-            }
-            )
-        .then((Response)=>{
-            console.log("Logout response : ",Response);
-            
-            this.nickname='';
-            this.flag=false;
-            this.$router.replace("/Loginservice")  // 로그아웃 했을때 로그인페이지로 가는구문
+        Logintoserver:function(){
+            axios.post('http://project.mintpass.kr:3000/login',{
+                user:this.userinfo.id
+            })
+            .then((response)=>{
+                console.log("서버 연결 : ",response);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+        }
 
-        })
-        .catch((err)=>{
-            console.log("err : ",err);
-        })
-    }
     },
    created:function(){
        this.token=sessionStorage.getItem("usertoken")
@@ -64,10 +55,14 @@ export default {
               })
             .then((Response)=>{
                 console.log("response get info: ",Response);
-                this.userinfo=Response.data.kakao_account.profile;
+                this.userinfo=Response.data;
                 console.log("user info: ",this.userinfo);
-                this.name=this.userinfo.nickname;
+                sessionStorage.setItem("username",this.userinfo.properties.nickname);
+                sessionStorage.setItem("userid",this.userinfo.id)
+                this.name=this.userinfo.properties.nickname;
                 this.flag=true;
+                this.Logintoserver();
+
             })
             .catch((ex)=>{
                 console.log("error!!! : ",ex);
@@ -75,11 +70,15 @@ export default {
 
     },
     components:{
-        'weather': weather
+        'weather': weather,
+        'makeheader':header,
+        'clothes': clothes,
+        'activities':activities
     }
     
     
 }
 </script>
 <style>
+
 </style>

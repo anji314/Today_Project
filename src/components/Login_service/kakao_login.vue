@@ -1,8 +1,12 @@
 <template>
-  <div>
-      <p v-on:click="trylogin">
-        <img src="../../assets/login_img/kakao_login_btn_medium_narrow.png">
-      </p>
+  <div id="tryLogin">
+    <img id=title class="back" src="../../assets/login_img/title.png"/>
+    <img id=heart src="../../assets/login_img/heart.png"/>
+    <div id="kakao">
+    <img id="loginbutton" src="../../assets/login_img/kakao.png" v-on:click="trylogin" />
+    </div>
+    <img id=couple src="../../assets/login_img/couple.png"/>
+    <img id=tree src="../../assets/login_img/tree.png"/>
   <router-view></router-view>
   </div>
 </template>
@@ -19,4 +23,37 @@ export default {
 }
 </script>
 <style>
+#title{
+  position: fixed;
+  top:13%;
+  left:18%;
+  width:15rem;
+}
+#heart{
+  position: fixed;
+  top: 35%;
+  left: 10%;
+  width:80%;
+}
+#couple{
+  position: fixed;
+  width:35%;
+  top: 65%;
+  left: 35%;
+}
+#tree{
+  bottom: 0px;
+  left: -2px;
+  position: fixed;
+  width:100%;
+}
+#loginbutton{
+  width:80%;
+  
+}
+#kakao{
+  position: fixed;
+  left: 20%;
+  top:25%;
+}
 </style>

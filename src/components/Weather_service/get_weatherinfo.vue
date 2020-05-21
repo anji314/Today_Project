@@ -1,16 +1,15 @@
 <template>
   <div class="W_style">
         <h3>오늘의 날씨</h3>
-        <div class="W_info">
-            <div>
+        <div class="W_box">
+            <div class="W_img">
                 <img v-bind:src="img_url" >
             </div>
-            <div>
+            <div class="W_info"> 
             날씨      : {{W_state.main}}<br>
-            현재 기온 : {{main.temp}}<br>
-            체감 기온 : {{main.feels_like}}<br>
-            최저 기온 : {{main.temp_min}}<br>
-            최고 기온 : {{main.temp_max}}<br>
+            현재 기온 : {{main.temp}} °C<br>
+            체감 기온 : {{main.feels_like}} °C<br>
+            최고/최저 : {{main.temp_max}} / {{main.temp_min}} °C<br>
             습도      : {{main.humidity}}<br>
             </div>
         </div>
@@ -31,6 +30,24 @@ export default {
 
 
     },
+    methods:{
+        changenum:function(){
+            this.main.temp*=1;
+            this.main.temp=Math.floor(this.main.temp-=273);
+
+            this.main.feels_like*=1;
+            this.main.feels_like=Math.floor(this.main.feels_like-=273);
+
+            this.main.temp_max*=1;
+            this.main.temp_max=Math.floor(this.main.temp_max-=273);
+
+            this.main.temp_min*=1;
+            this.main.temp_min=Math.floor(this.main.temp_min-=273);
+
+
+        }
+
+    },
     created:function(){
         Axios.get('https://api.openweathermap.org/data/2.5/weather',{
             params:{id:'1835841',appid:'000c3bd8aeda462393a585761b6c6d10'}
@@ -40,6 +57,8 @@ export default {
             this.weatherdata = response;
             console.log('weatherdata : ',this.weatherdata);
             this.main=this.weatherdata.data.main;
+            this.changenum();
+            
             console.log("main : ",this.main);
             this.spot=this.weatherdata.data.name;
             console.log('지역 : ',this.spot);
@@ -64,10 +83,22 @@ export default {
 </script>
 <style>
 .W_style{
-     border: 1px solid rgba(0,0,0,0.2);
+     border: 2px solid rgb(255, 121, 148);
+     border-radius: 1rem/ 1rem;
+     max-width: 100%;
+     height: auto;
 }
-.W_info div{
+.W_style>h3{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.W_box div{
     padding:1rem;
     display: inline-block;
+    padding: 3%;
+}
+.W_img >img{
+    width: 7rem;
 }
 </style>

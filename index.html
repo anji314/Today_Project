@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
       
     <!-- 아이콘 추가 -->
     <!-- type 부분을 꼭 넣어 줘야 한다. 안하면 안보인다. -->
@@ -12,6 +12,8 @@
     <link rel="shortcut icon" herf="src/assets/favicon.ico" type="image/x-icon">
     <link rel="icon" herf="src/assets/favicon.ico" type="image/x-icon">
 
+
+  
     <script src="https://developers.kakao.com/sdk/js/kakao.story.min.js"></script>
      <script>
       // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -20,9 +22,17 @@
       console.log(Kakao.isInitialized());
      </script>
     <title>today_Project</title>
+    
   </head>
   <body>
     <div id="app"></div>
     <script src="/dist/build.js"></script>
+
+    <style>
+      #app{
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
   </body>
 </html>
