@@ -97,7 +97,7 @@ GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
   "cod": 200
 }
 ```
-> API를 이용한 프로젝트 결과 => [실행 결과]
+> API를 이용한 프로젝트 결과 블로그에 기록 => [실행 결과](https://footprint-of-nawin.tistory.com/39)
 
 
 
