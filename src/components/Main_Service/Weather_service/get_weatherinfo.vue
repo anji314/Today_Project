@@ -1,5 +1,5 @@
 <template>
-  <div class="W_style">
+  <div class="W_style" v-if="loading">
         <h3>오늘의 날씨</h3>
         <div class="W_box">
             <div class="W_img">
@@ -25,7 +25,8 @@ export default {
             W_state:null,
             main:null,
             spot:'',
-            img_url:''
+            img_url:'',
+            loading:false
         }
 
 
@@ -43,7 +44,7 @@ export default {
 
             this.main.temp_min*=1;
             this.main.temp_min=Math.floor(this.main.temp_min-=273);
-
+            this.loading=true;
 
         }
 
@@ -55,15 +56,11 @@ export default {
         .then(response=>{        //json 해독이 필요.
             console.log('weather:',response);
             this.weatherdata = response;
-            console.log('weatherdata : ',this.weatherdata);
             this.main=this.weatherdata.data.main;
             this.changenum();
-            
-            console.log("main : ",this.main);
             this.spot=this.weatherdata.data.name;
-            console.log('지역 : ',this.spot);
             this.W_state=this.weatherdata.data.weather[0];
-            console.log('날씨 : ',this.W_state);
+     
 
             this.img_url='http://openweathermap.org/img/wn/'+this.W_state.icon+'@2x.png';
             console.log("url : ",this.img_url);
@@ -72,6 +69,8 @@ export default {
         })
         .catch(err=>{
             console.log('weather err: ',err);
+             alert("날씨 정보를 받아오는 중 문제가 발생하였습니다.");
+             
         })
         
 

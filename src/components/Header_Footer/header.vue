@@ -12,11 +12,11 @@
     <label for="toggle" class="right"><i class="addBtn fa fa-plus" aria-hidden="true"></i></label>
 
 
-    <div id="toggle_list">
+    <div id="toggle_list" >
       <div id="toggle_gnb">
         <ul>
-          <li>{{userinfo.nickname}}</li>
-          <li>id : {{userinfo.id}}</li>
+          <li>{{propsdata.properties.nickname}}</li>
+          <li>id : {{propsdata.id}}</li>
           <li>My List</li>
           <li name="logout" v-on:click="Logout">Logout</li>
         </ul>
@@ -31,16 +31,10 @@
 import axios from 'axios';
 
 export default {
+  props:['propsdata'],
+ 
   data(){
         return{
-       
-        userinfo:{
-            nickname : sessionStorage.getItem("username"),
-            id :sessionStorage.getItem("userid"),
-            token : sessionStorage.getItem("usertoken"),
-            profile_image_url:'',
-            thumbnail_image_url:''
-        },
         flag : true,
         token:'',
         name:''
@@ -60,14 +54,17 @@ export default {
             )
         .then((Response)=>{
             console.log("Logout response : ",Response);
-            
-            this.nickname='';
+            sessionStorage.clear();
+            //this.nickname='';
             this.flag=false;
-            this.$router.replace("/Loginservice")  // 로그아웃 했을때 로그인페이지로 가는구문
+            this.$router.replace("/Loginservice");  // 로그아웃 했을때 로그인페이지로 가는구문
 
         })
         .catch((err)=>{
             console.log("err : ",err);
+             alert("로그아웃 중 문제가 생겼습니다.");
+               this.$router.replace("/Main");
+               
         })
     }
     },

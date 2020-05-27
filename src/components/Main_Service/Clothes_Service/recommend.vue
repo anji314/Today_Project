@@ -3,10 +3,10 @@
     <div class="clothes_img">
       <div class=tl ><h3>추천의류</h3></div>
       <table>
-      <img src="../../assets/11.png" />
-      <img src="../../assets/22.png" />
-      <img src="../../assets/33.png" />
-      <img src="../../assets/11.png" />
+      <img src="../../../assets/11.png" />
+      <img src="../../../assets/22.png" />
+      <img src="../../../assets/33.png" />
+      <img src="../../../assets/11.png" />
       </table>
     </div>
   </div>

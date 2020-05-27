@@ -1,18 +1,18 @@
 <template>
   <div >
-      <makeheader class="makeheader"></makeheader>
+      <makeheader class="makeheader" v-bind:propsdata="userinfo"></makeheader>
       <weather class="weather"></weather>
       <clothes class="clothes"></clothes>
       <activities></activities>
-      <makefooter></makefooter>
+   <!--   <makefooter></makefooter>-->
       
   </div>
 </template>
 <script>
 import axios from 'axios';
-import weather from './Weather_service/get_weatherinfo.vue';
+import weather from './Main_Service/Weather_service/get_weatherinfo.vue';
 import header from'./Header_Footer/header.vue';
-import clothes from'./Clothes_Service/recommend.vue';
+import clothes from'./Main_Service/Clothes_Service/recommend.vue';
 import activities from'./Main_Service/activities.vue';
 
 const config={
@@ -41,7 +41,9 @@ export default {
                 console.log("서버 연결 : ",response);
             })
             .catch((err)=>{
-                console.log(err);
+                console.log("서버 에러",err);
+                alert("서버연결에 문제가 생겼습니다.");
+               this.$router.replace("/Loginservice")
             })
         }
 
@@ -66,6 +68,9 @@ export default {
             })
             .catch((ex)=>{
                 console.log("error!!! : ",ex);
+                 alert("로그인에서  문제가 생겼습니다.");
+                 this.Logintoserver();
+               //this.$router.replace("/Loginservice");
             })
 
     },

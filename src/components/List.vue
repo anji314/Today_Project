@@ -1,19 +1,20 @@
 <template>
   <div >
-      <makeheader></makeheader>
-      <Wcomment></Wcomment>
-      <showlist></showlist>
+      <makeheader v-bind:propsdata="userinfo"></makeheader>
+      <!-- <Wcomment></Wcomment>-->
       <div class=Rlist>
       <ul>
           <li v-for="spot in listarr">
-              <div class="spotob">
-              <img v-bind:src="spot.img" />
-              <div>{{spot.name}}<br>
-              <div class="info">
-                  {{spot.addr}}<br>
-                  {{spot.tag}}
-              </div>
-              </div>
+              <div class="spotob" v-on:click="infodetail" >
+                  <router-link v-bind:to="'/Detail/'+spot.id">
+                    <img v-bind:src="spot.img" />
+                    <div>{{spot.name}}<br>
+                    <div class="info">
+                        {{spot.addr}}<br>
+                          {{spot.tag}}
+                    </div>
+                    </div>
+              </router-link>
               </div>
           </li>
       </ul>
@@ -29,6 +30,12 @@ import axios from 'axios';
 export default {
   data(){
     return {
+      userinfo:{
+          id:'',
+          properties:{
+              nickname:''
+          }
+        },
       case:this.$route.params.id,
       listarr:{},
     }
@@ -37,12 +44,13 @@ export default {
     'makeheader':makeheader,
   },
   methods:{
-      devide:function(){
-
+      infodetail:function(){
       }
 
   },
   created:function(){
+      this.userinfo.id=sessionStorage.getItem("userid");
+      this.userinfo.properties.nickname=sessionStorage.getItem("username");
     if(this.case==1){ //식사
      axios.post('http://project.mintpass.kr:3000/tag',{
                 tag:"식사"
