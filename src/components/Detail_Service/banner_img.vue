@@ -1,7 +1,7 @@
 <template>
   <div id=banner_slide>
         <transition-group name="fade" mode="out-in" tag="div">
-        <div class=banner_img :style="setBackground" :key="image.url">
+        <div class=banner_img :style="setBackground" :key="image.id">
         </div>
         </transition-group>
   </div>

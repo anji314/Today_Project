@@ -10,29 +10,18 @@
 
 <script>
 import banner_img from './banner_img.vue';
+import axios from 'axios';
 export default {
+    props:['spotid'],
     components:{
         'banner-img':banner_img
     },
     data(){
         return {
+            spotid:'',
             img_idx : 0,
             img_url:'',
-            images:[
-                {
-                    id:0,
-                    url:"/src/assets/1.png"
-                },
-                {
-                    id:1,
-                    url:"/src/assets/2.png"
-                },
-                {
-                    id:2,
-                    url:"/src/assets/3.png"
-                },
-
-            ]
+            images:[            ]
         }
     },
     created:function(){
@@ -40,6 +29,17 @@ export default {
       /*  setInterval(()=>{
             self.move();
         },5000);*/
+        axios.get('http://img.mintpass.kr/api/'+this.spotid,{
+
+    }).then(response=>{
+      console.log(response);
+      this.images=response.data;
+      console.log(this.images);
+
+    })
+    .catch(err=>{
+
+    })
 
     },
     methods:{

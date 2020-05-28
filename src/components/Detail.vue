@@ -8,7 +8,7 @@
       <button type="button">이곳으로 결정하기</button>
       <rating></rating>
       <footer></footer>-->
-      <banner></banner>
+      <banner :spotid="spotid"></banner>
     
       {{info.info}}<br>
       {{info.tel}}<br>
@@ -44,6 +44,7 @@ export default {
     .catch(err=>{
       console.log(err);
     })
+
   },
   methods:{
 
