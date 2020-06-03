@@ -12,7 +12,7 @@ export default {
     props:['image'],
     computed:{
         setBackground(){
-            console.log("url",this.image.url);
+           // console.log("url",this.image.url);
             return{backgroundImage:"url("+this.image.url+")"};
         }
     },
@@ -25,7 +25,7 @@ export default {
 }
 #banner_slide .banner_img{
     width: 100%;
-    height: 300px;
+    height: 280px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

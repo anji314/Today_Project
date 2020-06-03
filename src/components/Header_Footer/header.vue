@@ -9,7 +9,7 @@
     </div>
     
 
-    <label for="toggle" class="right"><i class="addBtn fa fa-plus" aria-hidden="true"></i></label>
+    <label for="toggle" class="right"><i class="fas fa-user-circle"></i></label>
 
 
     <div id="toggle_list" >
@@ -75,7 +75,6 @@ export default {
  
  padding-top : 10%;
  padding-bottom : 10%;
- position: relative;
   text-align: center;
 }
 
@@ -88,8 +87,10 @@ export default {
 #header> label{
   display: block;
   position: absolute;
-  top:10%;
-  right: 5%;
+  top:5%;
+  right: 7%;
+  font-size: 1.7rem;
+  color:gray;
 }
 #toggle_gnb > ul{
   list-style: none;

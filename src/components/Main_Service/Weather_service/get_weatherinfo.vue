@@ -2,10 +2,10 @@
   <div class="W_style" v-if="loading">
         <h3>오늘의 날씨</h3>
         <div class="W_box">
-            <div class="W_img">
+            <div id="W_img">
                 <img v-bind:src="img_url" >
             </div>
-            <div class="W_info"> 
+            <div id="W_info"> 
             날씨      : {{W_state.main}}<br>
             현재 기온 : {{main.temp}} °C<br>
             체감 기온 : {{main.feels_like}} °C<br>
@@ -59,8 +59,8 @@ export default {
             this.changenum();
             this.spot=this.weatherdata.data.name;
             this.W_state=this.weatherdata.data.weather[0];
-     
-
+            sessionStorage.setItem("weather",this.W_state.main);
+            sessionStorage.setItem("pretemp",this.main.temp);
             this.img_url='http://openweathermap.org/img/wn/'+this.W_state.icon+'@2x.png';
             console.log("url : ",this.img_url);
             //console.log(this.pre_weather);
@@ -99,12 +99,13 @@ export default {
     display: inline-block;
     padding: 3%;
 }
-.W_box .W_img {
+#W_img {
     padding-top: 0%;
     padding-bottom: 0%;
     
 }
-.W_img img{
-    width: 7rem;
+
+#W_info{
+    text-align: left;
 }
 </style>

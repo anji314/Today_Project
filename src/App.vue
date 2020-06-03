@@ -28,7 +28,7 @@ const router=new vuerouter({
     },
    {path:'/Main',component:main},
    {path:'/List/:id',component:recommendlist},
-   {path:'/Detail/:id',component:detail}
+   {path:'/Detail/:id/:name/:addr',component:detail}
     //{path:'/Mylist',},
    // {path:'/Rate',}
   ]

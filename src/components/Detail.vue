@@ -1,32 +1,41 @@
 <template>
   <div class=detail>
-    <!--  <header></header>
-      <imags></imags>
-      <content></content>
-      <styles></styles>
-      <spot></spot> 
-      <button type="button">이곳으로 결정하기</button>
-      <rating></rating>
-      <footer></footer>-->
+    <div id=back v-on:click="goback"> <i class="fas fa-arrow-left"></i> BACK</div>
       <banner :spotid="spotid"></banner>
+
+
       <div id=maininfo>
-      <div id=storename>가게이름 : 치즈 크라이 버거</div>
-      <div>주소</div>
       
-      <div><img src="../assets/star.png"> <span>{{info.avg}}</span>({{info.cnt}})</div>
-      <div><i class="fas fa-phone"></i>  {{info.tel}}</div>
+      <div id=storename>{{this.name}}</div>
+      <div id=address>{{this.address}}</div>
+      
+      <div id=hd>
+        <div id=rt><img src="../assets/star.png"> <span>{{info.avg}}</span>({{info.cnt}})</div>
+        <div id=call><a v-bind:href="this.tel" ><i class="fas fa-phone"></i>  {{info.tel}}</a></div>
+      </div>
       </div>
 
+     
       <div id=content>
         <div id=summary>
           {{info.info}}
         </div>
           여기엔 태그
       </div>
+      <div id=detailinfo>
+       <span><i class="fas fa-info-circle"></i> 영업 정보</span>
+        <p>주소 : {{this.address}}</p>
+        <p>영업 시간 : 준비중</p>
+        <p>전화번호 : {{info.tel}}</p>
+      </div>
 
 
       <kakaomap :addr="addr"></kakaomap>
-      <div id="choice">이곳으로 결정하기</div>
+      <div id=ft>
+        <div id=ftcall><a v-bind:href="this.tel" ><i class="fas fa-phone"></i></a></div>
+        <div id=ftshare><i class="fas fa-share-alt"></i></div>
+        <div id="choice">오늘은 여기로!</div>
+      </div>
   </div>
 </template>
 <script>
@@ -37,14 +46,23 @@ import kakaomap from './Detail_Service/kakaomap.vue';
 export default {
   data(){
     return{
+      tel:"tel:",
       spotid:'',
       info:'',
       maininfo:'',
+      name:this.$route.params.name,
+      address:this.$route.params.addr,
       addr:{
         lat:'',
         lon:''
       }
     }
+  },
+  methods:{
+    goback:function(){
+      this.$router.go(-1);
+    }
+
   },
   created:function(){
     this.spotid=this.$route.params.id;
@@ -55,6 +73,7 @@ export default {
       this.info=response.data.infodetail[0];
       this.addr.lat=this.info.latitude;
       this.addr.lon=this.info.longitude;
+      this.tel+=this.info.tel;
        this.show();
 
     })
@@ -73,21 +92,55 @@ export default {
 }
 </script>
 <style>
-.detail{
- 
-}
-#choice{
+
+#ft{
   position:fixed;
   left: 0%;
   bottom: 0%;
-  width:99%;
-  padding-top: 3%;
-  padding-bottom: 3%;
-  text-align: center;
-   border-radius: 1rem/ 1rem;
-  border: 2px solid rgb(255, 121, 148);
+  width:100%;
   z-index: 1;
   background: white;
+  height: 7%;
+  box-shadow: 0px -2px 5px gray;
+}
+#ft div{
+ display: inline-block;
+}
+#ftshare{
+  margin-top: 1.5%;
+  margin-left: 3%;
+  color:gray;
+  font-size: 1.5rem;
+  padding-left:1%;
+  padding-right:1%;
+  
+}
+#ftcall{
+  margin-left: 5%;
+  margin-top: 1.5%;
+  font-size: 1.5rem;
+  padding-left:1%;
+  padding-right:1%;
+}
+#ftcall a{
+   text-decoration:none;
+   color:gray;
+}
+#choice{
+  position:absolute;
+  bottom: 18%;
+  right:0%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-align: center;
+  border-radius: 0.3rem/ 0.3rem;
+ 
+  width: 40%;
+  height: 25px;
+  color:white;
+  background: rgb(255, 121, 148);
+  font-size: 1rem;
+  margin-right:5%;
 }
 #content{
   background-color:white;
@@ -98,7 +151,7 @@ export default {
 }
 #summary{
  padding :10%;
- border: 2.5px solid rgb(255, 121, 148);
+ border: 2.5px solid #42b983;
  border-radius: 1rem/ 1rem;
  text-align: center;
  
@@ -109,10 +162,20 @@ export default {
   box-shadow: 2px 2px 3px gray;
   margin-bottom: 3%;
   background-color:white;
+  position: relative;
 
 }
+#back{
+  position:absolute;
+  font-size: 1.3rem;
+  font-weight: bold;
+  top:2%;
+  left: 3%;
+  color: rgb(255, 121, 148);
+  z-index: 1;
+}
 #maininfo img{
-  width:2rem;
+  width:1.5rem;
   padding-right: 1%;
 }
 #maininfo #storename{
@@ -120,8 +183,46 @@ export default {
   font-weight: bold;
 }
 #maininfo span{
-   font-size:2rem;
+   font-size:1.5rem;
    font-weight: bold;
+}
+#detailinfo{
+  padding:5%;
+  text-align: left;;
+  box-shadow: 2px 2px 3px gray;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  background-color:white;
+
+}
+#detailinfo span{
+  font-weight: bold;
+  font-size: 1rem;
+}
+#detailinfo p{
+ font-size: 0.9rem;
+}
+#call a{
+   text-decoration:none;
+   color:gray;
+}
+#hd div{
+  display: inline-block;
+}
+#rt{
+  width:100px;
+  padding-right: 5%;
+}
+#call{
+  padding-left: 5%;
+}
+#storename{
+  padding:4%;
+}
+#address{
+   padding:3%;
+   margin-bottom: 1%;
+   font-size: 0.9rem;
 }
 
 </style>

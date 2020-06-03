@@ -1,12 +1,16 @@
 <template>
   <div >
-      <makeheader v-bind:propsdata="userinfo"></makeheader>
-      <!-- <Wcomment></Wcomment>-->
+    <!--  <makeheader v-bind:propsdata="userinfo"></makeheader>-->
+      <div id=listhd >
+          <div id=listback v-on:click="goback"><i class="fas fa-arrow-left"></i> BACK</div>
+
+          <div id=sortinfo ><i class="fas fa-book-open"></i></div>
+     </div>
       <div class=Rlist>
       <ul>
           <li v-for="spot in listarr">
               <div class="spotob" v-on:click="infodetail" >
-                  <router-link v-bind:to="'/Detail/'+spot.id" id=list>
+                  <router-link v-bind:to="'/Detail/'+spot.id+'/'+spot.name+'/'+spot.addr" id=list>
                     <img v-bind:src="spot.img" />
                     <div id=listinfo>
                     <div id=sname>{{spot.name}}<br>
@@ -21,39 +25,43 @@
           </li>
       </ul>
       </div>
-
-
-      <footer></footer>
+   
+     
   </div>
 </template>
 <script>
-import makeheader from './Header_Footer/header.vue'
 import axios from 'axios';
 export default {
   data(){
     return {
-      userinfo:{
-          id:'',
-          properties:{
-              nickname:''
-          }
-        },
+      showck:false,
+     
       case:this.$route.params.id,
       listarr:{},
+      
     }
   },
   components:{
-    'makeheader':makeheader,
+ 
   },
   methods:{
-      infodetail:function(){
-      }
+     listsort:function(){
+         let w=sessionStorage.getItem("weather");
+
+                this.listarr.sort(function(a,b){
+                    return a[w]>b[w] ?-1: a[w]>b[w] ?1:0;
+                })
+               console.log("정렬후: ",this.listarr);
+     },
+     goback:function(){
+      this.$router.go(-1);
+    },
+    
 
   },
   created:function(){
-      this.userinfo.id=sessionStorage.getItem("userid");
-      this.userinfo.properties.nickname=sessionStorage.getItem("username");
-    if(this.case==1){ //식사
+
+    if(this.case==1){ //식사    
      axios.post('http://project.mintpass.kr:3000/tag',{
                 tag:"식사"
             })
@@ -62,7 +70,7 @@ export default {
 
                 this.listarr=response.data.info;
                 console.log("장소들: ",this.listarr);
-               
+               this.listsort();
             })
             .catch((err)=>{
                 console.log(err);
@@ -75,6 +83,7 @@ export default {
             .then((response)=>{
                 console.log("서버 연결태그 : ",response);
                 this.listarr=response.data.info;
+                this.listsort();
             })
             .catch((err)=>{
                 console.log(err);
@@ -87,6 +96,7 @@ export default {
             .then((response)=>{
                 console.log("서버 연결태그 : ",response);
                 this.listarr=response.data.info;
+                this.listsort();
             })
             .catch((err)=>{
                 console.log(err);
@@ -99,6 +109,7 @@ export default {
             .then((response)=>{
                 console.log("서버 연결태그 : ",response);
                 this.listarr=response.data.info;
+                this.listsort();
             })
             .catch((err)=>{
                 console.log(err);
@@ -111,24 +122,29 @@ export default {
             .then((response)=>{
                 console.log("서버 연결 태그: ",response);
                 this.listarr=response.data.info;
+                this.listsort();
             })
             .catch((err)=>{
                 console.log(err);
             })
 
     }else if(this.case==6){//아무거나
-    axios.post('http://project.mintpass.kr:3000/tag',{
-                tag:"아무거나"
+    let ww=sessionStorage.getItem("weather");
+    axios.post('http://project.mintpass.kr:3000/random',{
+               weather:ww
             })
             .then((response)=>{
-                console.log("서버 연결 태그: ",response);
+                console.log("아무거나서버 연결 태그: ",response);
                 this.listarr=response.data.info;
+                this.listsort();
             })
             .catch((err)=>{
                 console.log(err);
             })
 
     }
+
+
   }
 }
 </script>
@@ -154,6 +170,7 @@ export default {
 
 .spotob img{
    width:100%;
+   height: 15rem;
 }
 #listinfo{
     padding-left: 3%;
@@ -167,5 +184,27 @@ export default {
 #sname{
     font-weight: bold;
     font-size:1.1rem;
+}
+#listhd{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin:0%;
+}
+
+#listback{
+    position: absolute;
+    font-weight: bold;
+    left: 3%;
+    top:46%;
+    font-size: 1rem;
+    color:rgb(255, 121, 148);
+}
+#sortinfo{
+    position: absolute;
+    right: 5%;
+    top:44%;
+    font-size: 1.2rem;
+    color:rgb(255, 121, 148);
 }
 </style>
