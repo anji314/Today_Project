@@ -12,9 +12,11 @@ export default {
     props:['image'],
     computed:{
         setBackground(){
+            console.log("url",this.image.url);
             return{backgroundImage:"url("+this.image.url+")"};
         }
-    }
+    },
+    
 }
 </script>
 <style>

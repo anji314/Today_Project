@@ -3,7 +3,7 @@
       <makeheader class="makeheader" v-bind:propsdata="userinfo"></makeheader>
       <weather class="weather"></weather>
       <clothes class="clothes"></clothes>
-      <activities></activities>
+      <activities ></activities>
    <!--   <makefooter></makefooter>-->
       
   </div>

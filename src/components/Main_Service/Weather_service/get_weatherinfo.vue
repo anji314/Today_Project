@@ -9,7 +9,6 @@
             날씨      : {{W_state.main}}<br>
             현재 기온 : {{main.temp}} °C<br>
             체감 기온 : {{main.feels_like}} °C<br>
-            최고/최저 : {{main.temp_max}} / {{main.temp_min}} °C<br>
             습도      : {{main.humidity}}<br>
             </div>
         </div>
@@ -92,12 +91,20 @@ export default {
     margin-top: 10px;
     margin-bottom: 0px;
 }
+.W_box{
+    text-align: center;
+}
 .W_box div{
     padding:1rem;
     display: inline-block;
     padding: 3%;
 }
-.W_img >img{
+.W_box .W_img {
+    padding-top: 0%;
+    padding-bottom: 0%;
+    
+}
+.W_img img{
     width: 7rem;
 }
 </style>

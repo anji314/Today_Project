@@ -6,12 +6,14 @@
       <ul>
           <li v-for="spot in listarr">
               <div class="spotob" v-on:click="infodetail" >
-                  <router-link v-bind:to="'/Detail/'+spot.id">
+                  <router-link v-bind:to="'/Detail/'+spot.id" id=list>
                     <img v-bind:src="spot.img" />
-                    <div>{{spot.name}}<br>
+                    <div id=listinfo>
+                    <div id=sname>{{spot.name}}<br>
                     <div class="info">
                         {{spot.addr}}<br>
                           {{spot.tag}}
+                    </div>
                     </div>
                     </div>
               </router-link>
@@ -152,5 +154,18 @@ export default {
 
 .spotob img{
    width:100%;
+}
+#listinfo{
+    padding-left: 3%;
+    background-color:white;
+     border-radius: 0rem 0rem 1rem 1rem/ 0rem 0rem 1rem 1rem;
+    color:black;
+}
+#list{
+    text-decoration:none;
+}
+#sname{
+    font-weight: bold;
+    font-size:1.1rem;
 }
 </style>

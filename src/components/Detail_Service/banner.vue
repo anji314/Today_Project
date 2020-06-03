@@ -21,7 +21,7 @@ export default {
             spotid:'',
             img_idx : 0,
             img_url:'',
-            images:[            ]
+            images:[ ]
         }
     },
     created:function(){
@@ -29,12 +29,13 @@ export default {
       /*  setInterval(()=>{
             self.move();
         },5000);*/
+        console.log("spotid,",this.spotid);
         axios.get('http://img.mintpass.kr/api/'+this.spotid,{
 
     }).then(response=>{
       console.log(response);
-      this.images=response.data;
-      console.log(this.images);
+      this.images=response.data.imginfo;
+      console.log("이미지:",this.images);
 
     })
     .catch(err=>{

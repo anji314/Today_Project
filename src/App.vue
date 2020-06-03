@@ -43,6 +43,7 @@ body{
   
   background-image : url("./assets/login_img/back.png");
   background-size: cover;
+  margin: 0;
 
 }
 </style>
