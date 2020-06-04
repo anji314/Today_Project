@@ -108,7 +108,7 @@ GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
 
 
 ### KAKAO MAP API 사용
-> 상세페이지에 들어갈 장소의 위치를 KAKAO MAP API를 사용하여 표시 하였다.
+> 상세페이지에 들어갈 장소의 위치를 KAKAO MAP API를 사용하여 표시 하였다.            
 => [블로그 기록](https://footprint-of-nawin.tistory.com/44)
 #### 진행하면서 발생했던 이슈 
 > vue에서 인스턴스 사이클의 순서에 따른 부모 인스턴스에서 받은 위치의 위도,경도가 화면에 표시가 안되는 문제가 발생하였다.
