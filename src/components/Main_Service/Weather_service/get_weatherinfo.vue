@@ -27,26 +27,19 @@ export default {
             img_url:'',
             loading:false
         }
-
-
     },
     methods:{
         changenum:function(){
             this.main.temp*=1;
             this.main.temp=Math.floor(this.main.temp-=273);
-
             this.main.feels_like*=1;
             this.main.feels_like=Math.floor(this.main.feels_like-=273);
-
             this.main.temp_max*=1;
             this.main.temp_max=Math.floor(this.main.temp_max-=273);
-
             this.main.temp_min*=1;
             this.main.temp_min=Math.floor(this.main.temp_min-=273);
             this.loading=true;
-
         }
-
     },
     created:function(){
         Axios.get('https://api.openweathermap.org/data/2.5/weather',{
@@ -64,7 +57,6 @@ export default {
             this.img_url='http://openweathermap.org/img/wn/'+this.W_state.icon+'@2x.png';
             console.log("url : ",this.img_url);
             //console.log(this.pre_weather);
-
         })
         .catch(err=>{
             console.log('weather err: ',err);
@@ -72,10 +64,6 @@ export default {
              
         })
         
-
-
-
-
     }
 }
 </script>
@@ -104,7 +92,6 @@ export default {
     padding-bottom: 0%;
     
 }
-
 #W_info{
     text-align: left;
 }

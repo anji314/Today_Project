@@ -1,7 +1,7 @@
 <template>
   <div >
       <makeheader class="makeheader" v-bind:propsdata="userinfo"></makeheader>
-      <weather class="weather"></weather>
+      <weather class="weather" ></weather>
       <clothes class="clothes"></clothes>
       <activities ></activities>
    <!--   <makefooter></makefooter>-->
@@ -29,7 +29,7 @@ export default {
         },
         flag : true,
         token:'',
-        name:''
+        name:'',
         }
     },
     methods:{
@@ -49,7 +49,7 @@ export default {
 
     },
    created:function(){
-       this.token=sessionStorage.getItem("usertoken")
+       this.token=sessionStorage.getItem("usertoken");
         axios.get('https://kapi.kakao.com/v2/user/me',{
                   headers:{
                        Authorization: 'Bearer '+this.token
@@ -71,7 +71,7 @@ export default {
                  alert("로그인에서  문제가 생겼습니다.");
                  this.Logintoserver();
                //this.$router.replace("/Loginservice");
-            })
+            });   
 
     },
     components:{

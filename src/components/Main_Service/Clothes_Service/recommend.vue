@@ -30,7 +30,6 @@ export default {
     }
   },
   created(){
-    this.temp=sessionStorage.getItem("pretemp");
     this.writecontent();
   },
   updated(){
@@ -41,6 +40,7 @@ export default {
   },
   methods:{
     showinfo(){
+      this.temp=sessionStorage.getItem("pretemp");
       this.showModal= !this.showModal;
     },
     writecontent(){

@@ -16,8 +16,8 @@ export default {
 
     },
     
-    mounted() {
-
+   mounted() {
+    
         if (window.kakao && window.kakao.maps) {
             this.initMap();
         } else {
