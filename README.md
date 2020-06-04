@@ -104,7 +104,9 @@ GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
 
 ### 상세 페이지 이미지 슬라이드 구현
 => 과정과 자세한 내용은 블로그에 기록 =>[이미지 슬라이드 구현](https://footprint-of-nawin.tistory.com/41?category=875736)
-
+       
+            
+                
 
 
 ### KAKAO MAP API 사용
