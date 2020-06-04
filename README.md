@@ -116,8 +116,7 @@ GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
 #### 해결
 > 화면에 표시되는 mounted가 실행될때 그 순간의 props 데이터는 undefine 상태이다. 따라서 후에 props데이터를 받아 업데이트가 된다면 
 > 업데이트된 데이터는 수정이 일어났으므로 update가 실행된다. 이 부분에 맵을 그리는 함수를 다시 실행 시키면 map이 정상적으로 화면에 출력된다. 
-
-=> [블로그 기록](#)
+=> [블로그 기록](https://footprint-of-nawin.tistory.com/44)
 
 
 ### RANDOM SERVICE 구현
