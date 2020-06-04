@@ -109,6 +109,7 @@ GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
 
 ### KAKAO MAP API 사용
 > 상세페이지에 들어갈 장소의 위치를 KAKAO MAP API를 사용하여 표시 하였다.
+=> [블로그 기록](https://footprint-of-nawin.tistory.com/44)
 #### 진행하면서 발생했던 이슈 
 > vue에서 인스턴스 사이클의 순서에 따른 부모 인스턴스에서 받은 위치의 위도,경도가 화면에 표시가 안되는 문제가 발생하였다.
 > 부모로 부터  props 데이터(위도,경도)를 받아 화면에 표시해야하는데 받은 데이터를 바탕으로 표시되는것이아니라 undefine의 상태로 표시하려고 하니 
@@ -116,7 +117,7 @@ GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
 #### 해결
 > 화면에 표시되는 mounted가 실행될때 그 순간의 props 데이터는 undefine 상태이다. 따라서 후에 props데이터를 받아 업데이트가 된다면 
 > 업데이트된 데이터는 수정이 일어났으므로 update가 실행된다. 이 부분에 맵을 그리는 함수를 다시 실행 시키면 map이 정상적으로 화면에 출력된다.        
-=> [블로그 기록](https://footprint-of-nawin.tistory.com/44)
+
 
 
 ### RANDOM SERVICE 구현
