@@ -17,7 +17,7 @@
         <ul>
           <li>{{propsdata.properties.nickname}}</li>
           <li>id : {{propsdata.id}}</li>
-          <li>My List</li>
+          <li><router-link v-bind:to="'/mylist/'+propsdata.id" id=gomylist>My List</router-link></li>
           <li name="logout" v-on:click="Logout">Logout</li>
         </ul>
       </div>
@@ -98,12 +98,16 @@ export default {
 }
 #toggle_gnb li{
   margin-top: 3%;
+  
 }
 #toggle{display: none;}
 #toggle+ #header > #toggle_list{display: none;}
 
 #toggle:checked +#header > #toggle_list{ display: block;}
-
+#gomylist{
+  text-decoration: none;
+  color: black;
+}
 
 
 </style>

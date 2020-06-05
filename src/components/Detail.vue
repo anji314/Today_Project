@@ -34,7 +34,7 @@
       <div id=ft>
         <div id=ftcall><a v-bind:href="this.tel" ><i class="fas fa-phone"></i></a></div>
         <div id=ftshare><i class="fas fa-share-alt"></i></div>
-        <div id="choice">오늘은 여기로!</div>
+        <div id="choice" v-on:click="addlist">오늘은 여기로!</div>
       </div>
   </div>
 </template>
@@ -61,6 +61,19 @@ export default {
   methods:{
     goback:function(){
       this.$router.go(-1);
+    },
+    addlist:function(){
+      var addid=sessionStorage.getItem("userid");
+      axios.post('http://project.mintpass.kr:3000/list',{
+        id:this.spotid,
+        userid:addid
+      })
+      .then(response=>{
+        console.log("추가 성공",response);
+      })
+      .catch(err=>{
+        console.log(err);
+      })
     }
 
   },

@@ -7,7 +7,7 @@
        <router-link to="/list/3"><img src="../../assets/button_img/drink.png" /></router-link>
        <router-link to="/list/4"><img src="../../assets/button_img/outside.png" /></router-link>
        <router-link to="/list/5"><img src="../../assets/button_img/inside.png" /></router-link>
-       <div v-on:click="showrd"><img src="../../assets/button_img/random.png" /></div>
+     <!--  <div v-on:click="showrd"><img src="../../assets/button_img/random.png" /></div>-->
       </div>
 
       <modal v-if="randomck" @close="randomck = false">
@@ -70,6 +70,8 @@ export default {
     border: 2px solid rgb(243, 215, 104);
     border-radius: 1rem/ 1rem;
     text-align:center;
+    margin-top:3%;
+    margin-bottom: 3%;
     
 }
 #letter img{

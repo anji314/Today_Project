@@ -5,7 +5,6 @@
       <clothes class="clothes"></clothes>
       <activities ></activities>
    <!--   <makefooter></makefooter>-->
-      
   </div>
 </template>
 <script>
@@ -45,7 +44,7 @@ export default {
                 alert("서버연결에 문제가 생겼습니다.");
                this.$router.replace("/Loginservice")
             })
-        }
+        },
 
     },
    created:function(){

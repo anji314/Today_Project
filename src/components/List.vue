@@ -1,48 +1,61 @@
 <template>
   <div >
+    
     <!--  <makeheader v-bind:propsdata="userinfo"></makeheader>-->
       <div id=listhd >
           <div id=listback v-on:click="goback"><i class="fas fa-arrow-left"></i> BACK</div>
+           <div id=showtag v-on:click="modalshow">태그보기</div>
 
-          <div id=sortinfo ><i class="fas fa-book-open"></i></div>
+          
      </div>
       <div class=Rlist>
+      <div v-show="false"> {{idx=0}}</div>
       <ul>
-          <li v-for="spot in listarr">
-              <div class="spotob" v-on:click="infodetail" >
+          <li v-for="spot in listarr" :key="spot.id">
+              <div class="spotob" >
+                 <div v-show="false"> {{idx++}}</div>
+                 <div id=best v-show="idx<=3">강력추천</div>
                   <router-link v-bind:to="'/Detail/'+spot.id+'/'+spot.name+'/'+spot.addr" id=list>
                     <img v-bind:src="spot.img" />
                     <div id=listinfo>
-                    <div id=sname>{{spot.name}}<br>
+                    <div id=sname>{{spot.name}}</div>
                     <div class="info">
-                        {{spot.addr}}<br>
-                          {{spot.tag}}
+                        {{spot.addr}}
+                         <!-- {{spot.tag}}-->
                     </div>
-                    </div>
+                    
                     </div>
               </router-link>
               </div>
           </li>
       </ul>
       </div>
-   
-     
+
+      <modal v-if="showck" @close="showck = false">
+      <h3 slot="header" >태그<span id=deletetag @click="showck = false"><i class="closeModalBtn fa fa-times" aria-hidden="True"></i></span></h3> 
+      <span slot="footer">
+        태그들어갈 예정
+      </span>
+      </modal>
+ 
   </div>
 </template>
 <script>
 import axios from 'axios';
+import modal from './Modal.vue'
+
 export default {
   data(){
     return {
-      showck:false,
-     
-      case:this.$route.params.id,
-      listarr:{},
+    showck:false,
+    idx:0,
+    case:this.$route.params.id,
+    listarr:{},
       
     }
   },
   components:{
- 
+      'modal':modal
   },
   methods:{
      listsort:function(){
@@ -56,6 +69,16 @@ export default {
      goback:function(){
       this.$router.go(-1);
     },
+    ckidx(idx){
+        console.log(idx);
+        if(idx<=3)return true;
+        else return false;
+
+    },
+    modalshow(){
+        this.showck= !this.showck;
+    }
+
     
 
   },
@@ -104,7 +127,7 @@ export default {
 
     }else if(this.case==4){//야외활동
     axios.post('http://project.mintpass.kr:3000/tag',{
-                tag:"야외"
+                tag:"야외활동"
             })
             .then((response)=>{
                 console.log("서버 연결태그 : ",response);
@@ -117,7 +140,7 @@ export default {
 
     }else if(this.case==5){//실내활동
     axios.post('http://project.mintpass.kr:3000/tag',{
-                tag:"실내"
+                tag:"실내활동"
             })
             .then((response)=>{
                 console.log("서버 연결 태그: ",response);
@@ -157,33 +180,55 @@ export default {
 .Rlist li{
     margin-top: 2%;
     margin-bottom: 2%;
-     border: 2.5px solid rgb(255, 121, 148);
-     border-radius: 1rem/ 1rem;
-}
-.Rlist img{
-    border-radius: 1rem 1rem 0rem 0rem/ 1rem 1rem 0rem 0rem;
-}
+  border-radius: 0.4rem/0.4rem;
+    box-shadow: 3px 3px 2px gray;
+
+}     
 
 .info{
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .spotob img{
-   width:100%;
+    border-radius: 0.4rem/0.4rem;
+   width:99.8%;
    height: 15rem;
 }
+.spotob{
+    width:100%;
+    position: relative;
+}
 #listinfo{
-    padding-left: 3%;
-    background-color:white;
-     border-radius: 0rem 0rem 1rem 1rem/ 0rem 0rem 1rem 1rem;
-    color:black;
+    position:absolute;
+    width:97%;
+    background-color:rgb(73,159,120,0.7);
+    bottom: 0%;
+    padding-top:3%;
+    padding-bottom:1% ;
+    padding-left: 6%;
+    border-radius: 0.4rem/0.4rem;
+    color: white;
 }
 #list{
     text-decoration:none;
 }
+
 #sname{
     font-weight: bold;
-    font-size:1.1rem;
+    font-size:1.15rem;
+    margin-bottom: 0.4%;
+}
+#best{
+    position: absolute;
+    bottom: 21%;
+    left: 2%;
+    padding: 0.3%;
+    z-index:1;
+    font-size: 0.9rem;
+    border: 2px solid rgb(255, 121, 148);
+    color: rgb(255, 121, 148);
+     border-radius: 0.4rem/0.4rem;
+    background-color:white;
 }
 #listhd{
     position: relative;
@@ -206,5 +251,14 @@ export default {
     top:44%;
     font-size: 1.2rem;
     color:rgb(255, 121, 148);
+}
+#showtag{
+    right: 5%;
+    top:50%;
+    position: absolute;
+    color:rgb(255, 121, 148);
+}
+#deletetag{
+    margin-right:50%;
 }
 </style>

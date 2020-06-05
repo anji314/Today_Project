@@ -12,7 +12,6 @@
             습도      : {{main.humidity}}<br>
             </div>
         </div>
-
   </div>
 </template>
 <script>
@@ -25,9 +24,20 @@ export default {
             main:null,
             spot:'',
             img_url:'',
-            loading:false
+            loading:false,
+            lat:0,
+            lon:0,
         }
     },
+    
+    created:function(){
+        this.lat=0;
+        this.lon=0;
+        this.findspot();
+        this.getwheather();
+        
+    },
+ 
     methods:{
         changenum:function(){
             this.main.temp*=1;
@@ -39,14 +49,40 @@ export default {
             this.main.temp_min*=1;
             this.main.temp_min=Math.floor(this.main.temp_min-=273);
             this.loading=true;
-        }
-    },
-    created:function(){
-        Axios.get('https://api.openweathermap.org/data/2.5/weather',{
-            params:{id:'1835841',appid:'000c3bd8aeda462393a585761b6c6d10'}
+        },
+        findspot(){
+            var prelat=0;
+            var prelon=0;
+             if (navigator.geolocation) { // GPS를 지원하면
+                 navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        //console.log("위도경도",position.coords.latitude,position.coords.longitude);                   
+                        prelat=position.coords.latitude
+                        prelon=position.coords.longitude;
+                        //console.log("위도경도 받아와",prelat,prelon);
+                    }, 
+                    function(error) {
+                    console.error(error);
+                    }, 
+                    {
+                    enableHighAccuracy: false,
+                    maximumAge: 0,
+                    timeout: Infinity
+                    });
+            } else {
+             alert('GPS를 지원하지 않습니다');
+            }
+           // console.log("위도경도 받아와2",prelat,prelon);
+            //this.getwheather(prelat,prelon);
+        },
+       
+        getwheather(prelat,prelon){
+            prelat=37.4857291;
+            prelon=126.79271159999999;
+             Axios.get('https://api.openweathermap.org/data/2.5/weather',{
+            params:{lat:prelat,lon:prelon,appid:'000c3bd8aeda462393a585761b6c6d10'}
         })
-        .then(response=>{        //json 해독이 필요.
-            console.log('weather:',response);
+        .then(response=>{     //json 해독이 필요.          
             this.weatherdata = response;
             this.main=this.weatherdata.data.main;
             this.changenum();
@@ -55,16 +91,17 @@ export default {
             sessionStorage.setItem("weather",this.W_state.main);
             sessionStorage.setItem("pretemp",this.main.temp);
             this.img_url='http://openweathermap.org/img/wn/'+this.W_state.icon+'@2x.png';
-            console.log("url : ",this.img_url);
-            //console.log(this.pre_weather);
+  
         })
         .catch(err=>{
             console.log('weather err: ',err);
              alert("날씨 정보를 받아오는 중 문제가 발생하였습니다.");
              
         })
+        },
         
-    }
+      
+    },
 }
 </script>
 <style>

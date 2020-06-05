@@ -11,7 +11,8 @@ import logintoken from './components/Login_service/kakao_token.vue';
 import vuerouter from 'vue-router';
 import main from './components/Main.vue';
 import recommendlist from './components/list.vue';
-import detail from './components/Detail.vue'
+import detail from './components/Detail.vue';
+import mylist from './components/Mypage.vue'
 const router=new vuerouter({
   mode:'history',
   routes:[
@@ -28,8 +29,8 @@ const router=new vuerouter({
     },
    {path:'/Main',component:main},
    {path:'/List/:id',component:recommendlist},
-   {path:'/Detail/:id/:name/:addr',component:detail}
-    //{path:'/Mylist',},
+   {path:'/Detail/:id/:name/:addr',component:detail},
+   {path:'/mylist/:id',component:mylist},
    // {path:'/Rate',}
   ]
 })
