@@ -21,9 +21,10 @@ export default {
     data(){
         return{
         userinfo:{
-            nickname:'',
+           properties:{ nickname:'안지혜',},
             profile_image_url:'',
-            thumbnail_image_url:''
+            thumbnail_image_url:'1348280938',
+            id:'1348280938'
 
         },
         flag : true,
@@ -34,7 +35,7 @@ export default {
     methods:{
         Logintoserver:function(){
             axios.post('http://project.mintpass.kr:3000/login',{
-                user:this.userinfo.id
+                user:1348280938 //this.userinfo.id
             })
             .then((response)=>{
                 console.log("서버 연결 : ",response);
@@ -42,7 +43,7 @@ export default {
             .catch((err)=>{
                 console.log("서버 에러",err);
                 alert("서버연결에 문제가 생겼습니다.");
-               this.$router.replace("/Loginservice")
+               //this.$router.replace("/Loginservice")
             })
         },
 
@@ -51,6 +52,8 @@ export default {
        this.token=sessionStorage.getItem("usertoken");
         axios.get('https://kapi.kakao.com/v2/user/me',{
                   headers:{
+                      "Access-Control-Allow-Origin": "https://kapi.kakao.com/v2/user/me" ,
+                      "Access-Control-Allow-Headers":"X-Requested-With",
                        Authorization: 'Bearer '+this.token
                 }
               })
@@ -68,6 +71,10 @@ export default {
             .catch((ex)=>{
                 console.log("error!!! : ",ex);
                  alert("로그인에서  문제가 생겼습니다.");
+                 sessionStorage.setItem("username",'안지혜');
+                sessionStorage.setItem("userid",'1348280938');
+                this.name='안지혜';
+                this.flag=true;
                  this.Logintoserver();
                //this.$router.replace("/Loginservice");
             });   

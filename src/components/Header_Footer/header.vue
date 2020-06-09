@@ -15,7 +15,7 @@
     <div id="toggle_list" >
       <div id="toggle_gnb">
         <ul>
-          <li>{{propsdata.properties.nickname}}</li>
+          <li>{{propsdata.properties.nickname}}</li> <!-- 1348280938 -->
           <li>id : {{propsdata.id}}</li>
           <li><router-link v-bind:to="'/mylist/'+propsdata.id" id=gomylist>My List</router-link></li>
           <li name="logout" v-on:click="Logout">Logout</li>

@@ -167,7 +167,7 @@ export default {
 
     }
 
-
+//rgb(73, 159, 120,0.7);
   }
 }
 </script>
@@ -181,7 +181,7 @@ export default {
     margin-top: 2%;
     margin-bottom: 2%;
   border-radius: 0.4rem/0.4rem;
-    box-shadow: 3px 3px 2px gray;
+    box-shadow: 3px 2px 2px gray;
 
 }     
 
@@ -190,7 +190,7 @@ export default {
 }
 
 .spotob img{
-    border-radius: 0.4rem/0.4rem;
+   border-radius: 0.4rem/0.4rem;
    width:99.8%;
    height: 15rem;
 }
@@ -200,13 +200,13 @@ export default {
 }
 #listinfo{
     position:absolute;
-    width:97%;
-    background-color:rgb(73,159,120,0.7);
+    width:93.9%;
+    background-color:rgb(0,0,0,0.5); 
     bottom: 0%;
     padding-top:3%;
     padding-bottom:1% ;
     padding-left: 6%;
-    border-radius: 0.4rem/0.4rem;
+    border-radius: 0 0 0.4rem 0.4rem/0 0 0.4rem 0.4rem;
     color: white;
 }
 #list{

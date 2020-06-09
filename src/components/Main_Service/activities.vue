@@ -87,7 +87,7 @@ export default {
 #randompick img{
      border-radius: 1rem 1rem 0rem 0rem/ 1rem 1rem 0rem 0rem;
      width:100%;
-     height: 15rem;
+     height: 10rem;
 }
 #rdname{
     font-weight: bold;

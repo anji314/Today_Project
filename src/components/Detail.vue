@@ -20,7 +20,7 @@
         <div id=summary>
           {{info.info}}
         </div>
-          여기엔 태그
+         <!-- 여기엔 태그-->
       </div>
       <div id=detailinfo>
        <span><i class="fas fa-info-circle"></i> 영업 정보</span>
@@ -70,9 +70,11 @@ export default {
       })
       .then(response=>{
         console.log("추가 성공",response);
+        alert('Mylist에 추가하였습니다.');
       })
       .catch(err=>{
         console.log(err);
+        alert('Mylist에 추가하는과정에서 서버에 문제가 생겼습니다.다시 시도해주세요');
       })
     }
 
@@ -164,8 +166,8 @@ export default {
 }
 #summary{
  padding :10%;
- border: 2.5px solid #42b983;
- border-radius: 1rem/ 1rem;
+ border: 2.5px solid rgb(243, 215, 104);
+ border-radius: 0.5rem/ 0.5rem;
  text-align: center;
  
 }
