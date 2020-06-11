@@ -138,8 +138,8 @@ GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
 ```
 npm install vue-star-rating
 ```
-> 내가 사용한 종류는 Custom Star Shape 이다.
-
+> 내가 사용한 종류는 Custom Star Shape 이다.             
+> 구현된 모습 : [블로그에 기록](https://footprint-of-nawin.tistory.com/45)
 
 
 
