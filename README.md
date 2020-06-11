@@ -4,7 +4,7 @@
 > 날씨 데이터를 기반으로 데이트 장소를 추천해주는 모바일 웹
 
 
-### 로그인
+### 1. 로그인
 > 카카오 REST API 사용
 
 #### 이슈
@@ -37,7 +37,7 @@
 
 ---
 
-### 날씨 API 이용
+### 2. 날씨 API 이용
 > 기존에 사용하려던 오픈 API sk 날씨데이터 서비스가 종료가 되어 불가피하게 API를 바꾸게 되었다.    
 > 새로 찾은 API => [프로젝트에 사용한 날씨 API](https://openweathermap.org/current)        
 > 날씨정보와 그림까지 제공해 주기 때문에 사용하기 용이했다.         
@@ -102,14 +102,14 @@ GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
 
 
 
-### 상세 페이지 이미지 슬라이드 구현
+### 3. 상세 페이지 이미지 슬라이드 구현
 => 과정과 자세한 내용은 블로그에 기록 =>[이미지 슬라이드 구현](https://footprint-of-nawin.tistory.com/41?category=875736)
        
             
                 
 
 
-### KAKAO MAP API 사용
+### 4. KAKAO MAP API 사용
 > 상세페이지에 들어갈 장소의 위치를 KAKAO MAP API를 사용하여 표시 하였다.            
 => [블로그 기록](https://footprint-of-nawin.tistory.com/44)
 #### 진행하면서 발생했던 이슈 
@@ -122,14 +122,25 @@ GET  api.openweathermap.org/data/2.5/weather?id={city id}&appid={your api key}
 
 
 
-### RANDOM SERVICE 구현
+### 5.RANDOM SERVICE 구현
 > 카테고리 6개중 랜덤으로 날씨에 맞는 장소들 중 하나를 추천해주는 기능이다. 
 > api를 통해 해당 날씨에서 level3이상의 장소들을 리스트로 받아와 그중 modal을 통해 새창을 만들어 하나를 보여준다.
 > 랜덤 pick 이기때문에 버튼을 누를때마다 선택되는 장소들은 달라진다.
 
-### 리스트 정렬 알고리즘
+### 6. 리스트 정렬 알고리즘
 > 각 리스트의 객체데이터에 날씨(9개)별로 level을 가지고 있다. 
 > 해당 날씨에 맞는 level을 토대로 정렬하여 보여준다.
+
+      
+### 7. 마이페이지 속 별점 기능
+> 참고한 라이브러리 : [별점 평가 기능 구현](https://github.com/craigh411/vue-star-rating)          
+> Usage에 나와있는 설명대로 npm 설치를 한다.
+```
+npm install vue-star-rating
+```
+> 내가 사용한 종류는 Custom Star Shape 이다.
+
+
 
 
 ## Build Setup
