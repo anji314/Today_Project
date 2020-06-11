@@ -21,10 +21,10 @@ export default {
     data(){
         return{
         userinfo:{
-           properties:{ nickname:'안지혜',},
+            name:sessionStorage.getItem("username"),
             profile_image_url:'',
             thumbnail_image_url:'1348280938',
-            id:'1348280938'
+            id:sessionStorage.getItem("userid"),
 
         },
         flag : true,
@@ -35,7 +35,7 @@ export default {
     methods:{
         Logintoserver:function(){
             axios.post('http://project.mintpass.kr:3000/login',{
-                user:1348280938 //this.userinfo.id
+                user:this.userinfo.id
             })
             .then((response)=>{
                 console.log("서버 연결 : ",response);
@@ -43,13 +43,14 @@ export default {
             .catch((err)=>{
                 console.log("서버 에러",err);
                 alert("서버연결에 문제가 생겼습니다.");
-               //this.$router.replace("/Loginservice")
+               this.$router.replace("/Loginservice")
             })
         },
 
     },
    created:function(){
-       this.token=sessionStorage.getItem("usertoken");
+       this.Logintoserver();
+       /*this.token=sessionStorage.getItem("usertoken");
         axios.get('https://kapi.kakao.com/v2/user/me',{
                   headers:{
                       "Access-Control-Allow-Origin": "https://kapi.kakao.com/v2/user/me" ,
@@ -77,7 +78,7 @@ export default {
                 this.flag=true;
                  this.Logintoserver();
                //this.$router.replace("/Loginservice");
-            });   
+            });   */
 
     },
     components:{

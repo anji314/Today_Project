@@ -15,10 +15,11 @@
     <div id="toggle_list" >
       <div id="toggle_gnb">
         <ul>
-          <li>{{propsdata.properties.nickname}}</li> <!-- 1348280938 -->
+          <li>{{propsdata.name}}</li> <!-- 1348280938 -->
           <li>id : {{propsdata.id}}</li>
           <li><router-link v-bind:to="'/mylist/'+propsdata.id" id=gomylist>My List</router-link></li>
-          <li name="logout" v-on:click="Logout">Logout</li>
+          <!--<vue-kakao-logout></vue-kakao-logout>-->
+          <li id="logout" v-on:click="logout">Logout</li>
         </ul>
       </div>
     </div>
@@ -37,36 +38,21 @@ export default {
         return{
         flag : true,
         token:'',
-        name:''
+        name:'',
+        logoutwithkakao:()=>{
+          Kakao.Auth.logout(function() {
+            console.log(Kakao.Auth.getAccessToken());
+          });
+          }
         }
 
   },
   methods:{
-        // 로그아웃 함수 ->헤더로 뺄까 생각중
-    Logout:function(){
-        this.token=sessionStorage['usertoken'];
-        // unlink or logout
-        axios.post('https://kapi.kakao.com/v1/user/unlink','',{
-            headers : { 
-                Authorization: 'Bearer '+this.token
-                }
-            }
-            )
-        .then((Response)=>{
-            console.log("Logout response : ",Response);
-            sessionStorage.clear();
-            //this.nickname='';
-            this.flag=false;
-            this.$router.replace("/Loginservice");  // 로그아웃 했을때 로그인페이지로 가는구문
-
-        })
-        .catch((err)=>{
-            console.log("err : ",err);
-             alert("로그아웃 중 문제가 생겼습니다.");
-               this.$router.replace("/Main");
-               
-        })
+    logout(){
+      sessionStorage.clear();
+      this.$router.replace("/Loginservice");
     }
+        // 로그아웃 함수 ->헤더로 뺄까 생각중
     },
 }
 </script>

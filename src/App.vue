@@ -12,7 +12,7 @@ import vuerouter from 'vue-router';
 import main from './components/Main.vue';
 import recommendlist from './components/list.vue';
 import detail from './components/Detail.vue';
-import mylist from './components/Mypage.vue'
+import mylist from './components/Mypage.vue';
 const router=new vuerouter({
   mode:'history',
   routes:[
@@ -20,12 +20,12 @@ const router=new vuerouter({
       path:'/Loginservice',
       component:loginservice,
       //redirect:'/loginkakao',
-      children:[
+      /*children:[
         {
        path : 'code',
        component:logintoken
         }
-      ]
+      ]*/
     },
    {path:'/Main',component:main},
    {path:'/List/:id',component:recommendlist},
@@ -34,8 +34,10 @@ const router=new vuerouter({
    // {path:'/Rate',}
   ]
 })
+
 export default {
-  router
+  router,
+  
 }
 </script>
 

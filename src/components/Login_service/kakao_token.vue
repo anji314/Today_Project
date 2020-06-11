@@ -40,9 +40,9 @@ export default {
         }
     },
     created:function(){
-        this.code=this.$route.query.code;
+        /*this.code=this.$route.query.code;
         console.log("code: ",this.$route.query.code);
-        this.get_token();
+        this.get_token();*/
     
     }
 
