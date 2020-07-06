@@ -2,8 +2,14 @@
   <div id=clothes_imgs>
         <table>
         <!--<img src="@/assets/clothes_img/4/1.png"/>-->
-        <div v-for="ur in image" class=clothes_img  :key="ur.url">
-            <img v-bind:src="ur.url" />
+       <!-- <div v-for="ur in im[0]" class=clothes_img  :key="ur.url" >
+            <img v-bind:src="im[0]" />
+        </div>-->
+        <div class=clothes_img>
+         <img src="/images/27-23/1.png" /></div>
+        <div class=clothes_img> <img src="/images/27-23/2.png" /></div>
+        <div class=clothes_img> <img src="/images/27-23/3.png" /></div>
+        <div class=clothes_img> <img src="/images/27-23/4.png" />
         </div>
       </table>
         

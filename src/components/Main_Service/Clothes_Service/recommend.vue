@@ -23,8 +23,22 @@ export default {
       showModal:false,
       content:'',
       temp:'',
-      idx:'',
+      idx:'5',
       weather:'',
+      a:  [
+          {
+            url:"/images/27/1.png"
+          },
+          {
+            url:"/images/27/2.png"
+          },
+          {
+            url:"/images/27/3.png"
+          },
+          {
+            url:"/images/27/4.png"
+          }
+        ],
       clothes:[
         [
           {
@@ -180,7 +194,7 @@ export default {
   updated(){
     //this.clothes=[];
   this.writecontent();
-  console.log("clothes",this.clothes);
+  console.log("idx",this.idx);
   },
   components:{
     Modal:Modal,
@@ -195,28 +209,28 @@ export default {
       //this.clothes=[];
      if(this.temp<=4){
       this.content="패딩, 두꺼운 코트를 입고 목도리와 기모제품으로 추위에 대비해주세요!";
-      this.idx=0;
+     // this.idx=0;
     }else if(this.temp<=8){
       this.content= "코트와 가죽자켓으로 추위에 대비하고 히트텍, 니트, 레깅스를 입으면 딱!!";
-       this.idx=1;
+      // this.idx=1;
     }else if(this.temp<=11){
       this.content= "자켓, 트렌치코트, 야상을 입고 안에는 니트, 청바지, 스타킹을 입어주면 될 거에요!";
-       this.idx=2;
+     //  this.idx=2;
     }else if(this.temp<=16){
       this.content= "본격적으로 쌀쌀해지는 날씨에 맞춰 자켓,가디건, 야상을 챙겨입으세요!";
-       this.idx=3;
+      // this.idx=3;
     }else if(this.temp<=19){
       this.content= "이때부터는 얇은 니트와 맨투맨 가디건과 청바지를 입으면 좋습니다.";
-       this.idx=4;
+     //  this.idx=4;
     }else if(this.temp<=22){
       this.content="얇은 가디던, 긴팔, 면바지, 청바지로 코디해서 입으면 최고!!";
-       this.idx=5;
+      // this.idx=5;
     }else if(this.temp<=27){
       this.content="본격적으로 더워지니 반팔이나 얇은 셔츠와 함게 반바지나 면바지가 좋아요!";
-       this.idx=6;
+     //  this.idx=6;
     }else{
       this.content= "정말 덥군요,,,, 민소매 또는 반팔, 반바지, 원피스를 추천할게요!";
-       this.idx=7;
+       //this.idx=7;
     }
     },
     
