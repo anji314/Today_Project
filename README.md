@@ -1,7 +1,8 @@
 # today
 
 > 오늘어때 프로젝트 
-> 날씨 데이터를 기반으로 데이트 장소를 추천해주는 모바일 웹
+> 날씨 데이터를 기반으로 데이트 장소를 추천해주는 모바일 웹             
+=> [블로그 정리](https://footprint-of-nawin.tistory.com/category/Projects/%EC%97%AC%EA%B8%B0%EC%96%B4%EB%95%8C%28%EA%B0%80%EC%A0%9C%29%5B2020.1%ED%95%99%EA%B8%B0%20%EC%A2%85%EC%84%A4%5D)
 
 
 ### 1. 로그인
