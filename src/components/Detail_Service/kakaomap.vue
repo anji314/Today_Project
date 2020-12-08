@@ -24,7 +24,7 @@ export default {
             const script = document.createElement('script');
             /* global kakao */
             script.onload = () => kakao.maps.load(this.initMap);
-            script.src = 'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=83cad9447b59eeb4ae6b7385b5307162&libraries=services';
+            script.src = 'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=발급키';
             document.head.appendChild(script);
         }
     },
