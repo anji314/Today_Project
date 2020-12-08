@@ -21,7 +21,7 @@ export default {
                 url:'https://kauth.kakao.com/oauth/token',
                 params:{
                     grant_type : 'authorization_code',
-                    client_id : '331a7d6f3656132d7e88f650993a830f',
+                    client_id : '발급키',
                     redirect_uri:'http://localhost:8080/Loginservice/code',
                     code: this.code
                 }
