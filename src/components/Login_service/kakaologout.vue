@@ -21,7 +21,7 @@ export default {
     data(){
       return{
        initiate: (comp) => {
-        Kakao.init('83cad9447b59eeb4ae6b7385b5307162');
+        Kakao.init('발급키');
       },
       logoutwithkakao : ()=>{
         Kakao.Auth.logout(function() {
